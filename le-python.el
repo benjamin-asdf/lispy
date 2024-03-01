@@ -298,7 +298,8 @@ it at one time."
 (defvar lispy--python-init-file nil)
 
 (defun lispy--python-poetry-name ()
-  (when-let* ((root (locate-dominating-file (buffer-file-name) "pyproject.toml"))
+  (when-let* ((bfn (buffer-file-name))
+              (root (locate-dominating-file bfn "pyproject.toml"))
               (pyproject (file-name-directory root)))
     (and (file-exists-p pyproject)
          (not (equal python-shell-interpreter "python"))
